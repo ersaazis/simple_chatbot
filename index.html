@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Konsultasi Pra Nikah</title>
+</head>
+<body>
+    <div class="chating"></div>
+    <div class="input-box">
+        <input id="sender" name="text" placeholder="Mari mengobrol"/>
+        <input id="bm" class = "send" type="submit" value="kirim">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#bm').click(function(){ 
+                var ans = document.createElement('P');
+                ans.setAttribute('class','reply');
+                ans.innerHTML="";
+                var mess = document.createElement('P');
+                mess.setAttribute('class','message');
+                mess.innerHTML = $("#sender").val();
+                $('.chating').append(mess);
+                $.ajax({
+                    type : "POST",
+                    url : "/",
+                    datatype : 'json',
+                    data : {chat : $("#sender").val()},
+                    success : function(data){
+                        ans.innerHTML = data;
+                        $('.chating').append(ans);
+                    },
+                    cache : false
+                })
+            });
+        });
+    </script>
+</body>
+</html>
