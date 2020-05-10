@@ -1,8 +1,7 @@
 # String Matching with Boyer Moore
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-import sys
-import json
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+
 
 class SimpleChatbot:
 
@@ -77,4 +76,7 @@ class SimpleChatbot:
                         self.answere = data[i][1]
                         valid = 1
     def getAnswere(self):
-        return self.answere
+        if(self.answere == ""):
+            return 'saya tidak mengerti maksud anda'
+        else:
+            return self.answere
